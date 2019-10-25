@@ -1,0 +1,22 @@
+{
+  "name": "globalsectors",
+  "version": "1.0.0",
+  "description": "## ESSENTIAL INFORMATION ABOUT THIS FUNCTION: function determineSector(lat, long, alt){}",
+  "main": "sectors.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoahSylwester/globalSectors.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NoahSylwester/globalSectors/issues"
+  },
+  "homepage": "https://github.com/NoahSylwester/globalSectors#readme",
+  "dependencies": {
+    "math-pkg-cmplx": "^1.2.2"
+  }
+}
