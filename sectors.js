@@ -12,7 +12,7 @@ function determineSector(lat, long, alt) {
   // so we'll quickly convert here (longitude ranges from 0 to 180 degrees)
   var longFull;
   if (long < 0) {
-    longFull = 180 - long;
+    longFull = 360 + long;
   }
   else {
     longFull = long;
