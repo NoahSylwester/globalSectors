@@ -16,16 +16,13 @@ Treating the earth as an oblate spheroid, and latitude as a geodetic value in de
 
 (from https://rechneronline.de/earth-radius/, corroborated by https://planetcalc.com/7721/)
 
-latitude B, radius R, radius at equator r1, radius at pole r2
-
+latitude B, radius R, radius at equator r1, radius at pole r2:
 R = √ [ (r1² * cos(B))² + (r2² * sin(B))² ] / [ (r1 * cos(B))² + (r2 * sin(B))² ]
 
 Taken from NASA (https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html):
 
 Equatorial radius (km)	        6378.137    
-
 Polar radius (km)               6356.752 
-
 Ellipticity (Flattening)        0.003353  
 
 
