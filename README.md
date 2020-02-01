@@ -14,39 +14,59 @@ This id will be unique to each sector.
 ## METHODOLOGY:
 Treating the earth as an oblate spheroid, and latitude as a geodetic value in decimal degrees:
 
-from https://rechneronline.de/earth-radius/, corroborated by https://planetcalc.com/7721/
+(from https://rechneronline.de/earth-radius/, corroborated by https://planetcalc.com/7721/)
+
 latitude B, radius R, radius at equator r1, radius at pole r2
+
 R = √ [ (r1² * cos(B))² + (r2² * sin(B))² ] / [ (r1 * cos(B))² + (r2 * sin(B))² ]
 
 Taken from NASA (https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html):
+
 Equatorial radius (km)	        6378.137    
+
 Polar radius (km)               6356.752 
+
 Ellipticity (Flattening)        0.003353  
+
 
 (all coordinates converted to radians)
 
 to JavaScript:
+
 Radius = Math.sqrt((((eqR**2)*Math.cos(lat))**2 + ((plR**2)*Math.sin(lat))**2)/(((eqR)*Math.cos(lat))**2 + ((eqR)*Math.sin(lat))**2))
 
 This gives us the radius of the Earth from a specific latitude
+
   (distance from surface to center of Earth)
+  
 We now need to build a cross-sectional circumference from our radii
+
   To do so we build a right triangle from our new radius and a section of our polar radius
+  
   and derive the length of the third side
 
   Deriving segment of polar radius:
+  
     theta = (Math.PI/2)-flooredLatRads;
+    
     Math.cos(theta) = plRSegment/radiusFromLatitude
+    
     >> plRSegment = Math.cos(theta) * radiusFromLatitude
 
 This is how we now derive our cross-sectional radius:
 
   Using the Pythagorean theorem:
+  
     a**2 + b**2 === c**2 (true)
+    
     solve for a
+    
     a === Math.sqrt(c**2 - b**2)
+    
     a === Math.sqrt(radiusFromLatitude**2 - plRSegment**2)
+    
     Having a (crossSectionalRadius), the circumference is simply
+    
     Circumference = 2 * Math.PI * a
 
 ### TO DETERMINE SECTOR:
@@ -60,9 +80,13 @@ We now need to define a pseudogrid that splits the Earth's surface (an oblate sp
   each row.
 
   Meridian Distance https://en.wikipedia.org/wiki/Meridian_arc
+  
     Wolfram Alpha formula code (theta is latitude in radians):
+    
     (definite integral ((1-((0.003353*(2-0.003353)))sin(x)^2))^(-3/2)dx from 0 to theta)
+    
     >>> multiply this by ((eqR)*(1-(0.003353*(2-0.003353)))) to get total distance
+    
     >>> plugging in pi/2 (latitude in radius of north pole) gets us 10,000km, which is what we expect
 
         using lat = 90, we get 10001964.781658073 meters as the distance from the equator to the north pole
@@ -84,10 +108,16 @@ We now need to define a pseudogrid that splits the Earth's surface (an oblate sp
 
 
 Some sources:
+
 https://en.wikipedia.org/wiki/Meridian_arc
+
 https://en.wikipedia.org/wiki/Eccentricity_(mathematics)
+
 https://en.wikipedia.org/wiki/Latitude#Meridian_distance_on_the_sphere
+
 https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
+
 http://mathworld.wolfram.com/Ellipticity.html
+
 http://mathworld.wolfram.com/Eccentricity.html
 */
